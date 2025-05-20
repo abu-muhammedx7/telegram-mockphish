@@ -3,22 +3,26 @@
     --tg-hover-blue: #0077b3;
     --tg-dark-gray: #999;
     --tg-border: #e2e2e2;
+    --tg-light-bg: #f7f7f7;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+html, body {
+    height: 100%;
 }
 
 body {
-    background-color: var(--tg-blue);
-    color: white;
+    background-color: var(--tg-light-bg);
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     padding: 20px;
 }
 
@@ -28,46 +32,67 @@ body {
     max-width: 360px;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), 
+                0 2px 2px rgba(0, 0, 0, 0.08), 
+                0 4px 4px rgba(0, 0, 0, 0.08);
+    margin: auto;
 }
 
 .tg-header {
-    padding: 20px 16px 10px;
+    padding: 24px 16px 16px;
     text-align: center;
+    background-color: var(--tg-blue);
+    color: white;
 }
 
 .tg-header h1 {
-    color: var(--tg-blue);
-    font-size: 24px;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 4px;
 }
 
 .tg-header p {
-    color: var(--tg-dark-gray);
     font-size: 14px;
-    margin-top: 4px;
+    opacity: 0.8;
 }
 
 .tg-form {
-    padding: 0 16px 20px;
+    padding: 24px 16px 20px;
 }
 
 .input-group {
-    display: flex;
     margin-bottom: 16px;
     border: 1px solid var(--tg-border);
     border-radius: 8px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 
 .country-select {
+    position: relative;
     width: 100px;
     border-right: 1px solid var(--tg-border);
 }
 
 .country-select select {
     width: 100%;
-    padding: 12px;
+    padding: 12px 12px 12px 16px;
     border: none;
+    background: none;
+    appearance: none;
+    font-size: 16px;
+}
+
+.country-select:after {
+    content: "▼";
+    font-size: 10px;
+    color: var(--tg-dark-gray);
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
 }
 
 .phone-input {
@@ -76,34 +101,55 @@ body {
 
 .phone-input input {
     width: 100%;
-    padding: 12px;
+    padding: 12px 16px;
     border: none;
+    font-size: 16px;
+}
+
+.otp-container {
+    margin: 24px 0;
+}
+
+.otp-title {
+    font-size: 15px;
+    color: var(--tg-dark-gray);
+    margin-bottom: 12px;
+    text-align: center;
 }
 
 .otp-inputs {
     display: flex;
+    justify-content: center;
     gap: 8px;
-    margin: 20px 0;
 }
 
 .otp-inputs input {
-    width: 40px;
-    height: 50px;
+    width: 44px;
+    height: 52px;
     text-align: center;
     font-size: 20px;
     border: 1px solid var(--tg-border);
     border-radius: 8px;
+    transition: border-color 0.2s;
+}
+
+.otp-inputs input:focus {
+    border-color: var(--tg-blue);
+    outline: none;
 }
 
 .tg-button {
     width: 100%;
     padding: 12px;
+    padding-top:8px;
     background: var(--tg-blue);
     color: white;
     border: none;
     border-radius: 8px;
     font-weight: 500;
+    font-size: 16px;
     cursor: pointer;
+    transition: background 0.2s;
 }
 
 .tg-button:hover {
@@ -111,27 +157,49 @@ body {
 }
 
 .tg-footer {
-    padding: 12px;
+    padding: 16px;
     border-top: 1px solid var(--tg-border);
     text-align: center;
+    font-size: 13px;
+    color: var(--tg-dark-gray);
 }
 
 .tg-footer a {
     color: var(--tg-blue);
     text-decoration: none;
+    font-weight: 500;
+}
+
+/* Countdown timer */
+.countdown {
+    margin-top: 16px;
     font-size: 13px;
+    color: var(--tg-dark-gray);
+    text-align: center;
+}
+
+.countdown.active {
+    color: var(--tg-blue);
 }
 
 /* Mobile responsiveness */
 @media (max-width: 480px) {
     body {
-        padding: 0;
+        padding: 16px;
         background: white;
-        align-items: flex-start;
     }
-
+    
     .tg-container {
-        border-radius: 0;
         box-shadow: none;
+        border: 1px solid var(--tg-border);
+    }
+}
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+    .country-select select, 
+    .phone-input input {
+        padding-top: 14px;
+        padding-bottom: 14px;
     }
 }
